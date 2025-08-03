@@ -1,21 +1,30 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { SnackbarProvider } from './context/SnackbarContext';
-import { AppBar, Toolbar, Button } from '@mui/material';
+import { AppBar, Toolbar, Button, Box } from '@mui/material';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import { ThemeProvider } from './context/ThemeContext';
+import ThemeToggleButton from './theme';
+
 
 export default function App() {
   return (
-    <SnackbarProvider>
+
+  <ThemeProvider>
+      <SnackbarProvider>
     <CartProvider>
       <Router>
-        <AppBar position="static">
-          <Toolbar>
-            <Button color="inherit" component={Link} to="/">Home</Button>
-            <Button color="inherit" component={Link} to="/cart">Cart</Button>
-          </Toolbar>
-        </AppBar>
+      <AppBar position="static">
+  <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+    <Box>
+      <Button color="inherit" component={Link} to="/">Home</Button>
+      <Button color="inherit" component={Link} to="/cart">Cart</Button>
+    </Box>
+
+    <ThemeToggleButton />
+  </Toolbar>
+</AppBar>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
@@ -23,5 +32,6 @@ export default function App() {
       </Router>
     </CartProvider>
     </SnackbarProvider>
+  </ThemeProvider>
   );
 }
