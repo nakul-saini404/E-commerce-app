@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
 import { fetchProducts } from '../api/product';
 
 export default function Home() {
@@ -12,12 +12,14 @@ export default function Home() {
 
   return (
     <Box p={3}>
-      <Typography variant="h4">Products</Typography>
-      <Box display="flex" flexWrap="wrap">
-        {products.map(product => (
-          <ProductCard key={product.id} product={product} />
+      <Typography variant="h4" sx={{margin:"30px 0"}} textAlign={"center"}>Products</Typography>
+     <Grid container spacing={3} alignItems="stretch" justifyContent="center" >
+        {products.map((product) => (
+          <Grid size={{ xs: 12, md: 12 ,lg:6 }} key={product.id}  sx={{ display: "flex", alignItems:"center", justifyContent:"center" }} >
+            <ProductCard product={product} />
+          </Grid>
         ))}
-      </Box>
+      </Grid>
     </Box>
   );
 }

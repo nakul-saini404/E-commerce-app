@@ -1,37 +1,43 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { CartProvider } from './context/CartContext';
-import { SnackbarProvider } from './context/SnackbarContext';
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
-import Home from './pages/Home';
-import Cart from './pages/Cart';
-import { ThemeProvider } from './context/ThemeContext';
-import ThemeToggleButton from './theme';
-
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
+import { SnackbarProvider } from "./context/SnackbarContext";
+import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import BuyPage from "./pages/BuyPage";
+import { ThemeProvider } from "./context/ThemeContext";
+import ThemeToggleButton from "./theme";
 
 export default function App() {
   return (
-
-  <ThemeProvider>
+    <ThemeProvider>
       <SnackbarProvider>
-    <CartProvider>
-      <Router>
-      <AppBar position="static">
-  <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-    <Box>
-      <Button color="inherit" component={Link} to="/">Home</Button>
-      <Button color="inherit" component={Link} to="/cart">Cart</Button>
-    </Box>
+        <CartProvider>
+          <Router>
+            <AppBar position="static">
+              <Toolbar
+                sx={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <Box>
+                  <Button color="inherit" component={Link} to="/">
+                    Home
+                  </Button>
+                  <Button color="inherit" component={Link} to="/cart">
+                    Cart
+                  </Button>
+                </Box>
 
-    <ThemeToggleButton />
-  </Toolbar>
-</AppBar>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-      </Router>
-    </CartProvider>
-    </SnackbarProvider>
-  </ThemeProvider>
+                <ThemeToggleButton />
+              </Toolbar>
+            </AppBar>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/buy" element={<BuyPage />} />
+            </Routes>
+          </Router>
+        </CartProvider>
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 }

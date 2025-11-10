@@ -1,10 +1,20 @@
 import CartItem from "../components/CartItem";
-import { Box, Typography, Divider } from "@mui/material";
+import { Box, Typography, Divider, Button } from "@mui/material";
 import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Cart() {
   const { cart } = useCart();
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const navigate = useNavigate();
+
+
+  const handleBuyNow = () => {
+    // You can pass product data to the new page using state
+    navigate("/buy", { state: { product } });
+  };
+
 
   return (
     <Box p={3} sx={{ textAlign: "center" }}>
@@ -39,6 +49,15 @@ export default function Cart() {
           <Typography variant="h6" sx={{ mt: 3 }}>
             Grand Total: ${total.toFixed(2)}
           </Typography>
+
+          <Button 
+                onClick={() => navigate("/buy")}
+                variant="contained"
+                color="secondary"
+                sx={{ minWidth: "120px", borderRadius: 2 , mt: 2}}
+              >
+                Buy Now
+              </Button>
         </>
       )}
     </Box>
