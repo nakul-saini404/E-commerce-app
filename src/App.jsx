@@ -13,7 +13,7 @@ export default function App() {
     <ThemeProvider>
       <SnackbarProvider>
         <CartProvider>
-          <Router>
+          <Router basename="/E-commerce-app">
             <AppBar position="static">
               <Toolbar
                 sx={{ display: "flex", justifyContent: "space-between" }}
